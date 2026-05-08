@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hitesh Namrani | Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --surface-color: rgba(25, 25, 25, 0.6);
+            --primary-accent: #00f0ff;
+            --secondary-accent: #7000ff;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background Mesh */
+        .bg-mesh {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: -1;
+            background: 
+                radial-gradient(circle at 15% 50%, rgba(112, 0, 255, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 240, 255, 0.15), transparent 25%);
+            filter: blur(60px);
+            animation: meshFloat 20s ease-in-out infinite alternate;
+        }
+
+        @keyframes meshFloat {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.1) translate(-20px, 20px); }
+        }
+
+        /* Typography */
+        h1, h2, h3 { font-family: 'Space Grotesk', sans-serif; }
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-accent), var(--secondary-accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Navbar */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass-border);
+            z-index: 1000;
+        }
+
+        .nav-logo {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            margin-left: 30px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .nav-links a:hover { color: var(--primary-accent); }
+
+        /* Sections */
+        section {
+            padding: 120px 10%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Hero */
+        .hero-content { max-width: 800px; }
+        .hero-title { font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; }
+        .typewriter { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 30px; min-height: 36px; }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-right: 15px;
+        }
+        .btn-primary {
+            background: linear-gradient(90deg, var(--primary-accent), #0075ff);
+            color: #000;
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+        }
+        .btn-primary:hover { box-shadow: 0 0 30px rgba(0, 240, 255, 0.6); transform: translateY(-2px); }
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-main);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(10px);
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); transform: translateY(-2px); }
+
+        /* About & Skills */
+        .section-title { font-size: 2.5rem; margin-bottom: 40px; }
+        .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+        .stat-card {
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            padding: 20px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            margin-bottom: 20px;
+        }
+        .stat-card h3 { font-size: 1.2rem; color: var(--primary-accent); margin-bottom: 5px; }
+
+        .skills-container { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 20px; }
+        .skill-chip {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        .skill-chip:hover {
+            border-color: var(--primary-accent);
+            background: rgba(0, 240, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* Projects Grid */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+        .project-card {
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: 0;
+        }
+        .project-card:hover::before { opacity: 1; }
+        .project-card:hover { transform: translateY(-10px); border-color: rgba(255,255,255,0.2); }
+        .project-content { position: relative; z-index: 1; }
+        .project-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .project-icon { font-size: 1.5rem; color: var(--primary-accent); }
+        .project-links a { color: var(--text-muted); font-size: 1.2rem; transition: color 0.3s; }
+        .project-links a:hover { color: var(--text-main); }
+        .project-title { font-size: 1.5rem; margin-bottom: 10px; }
+        .project-desc { color: var(--text-muted); font-size: 0.95rem; margin-bottom: 20px; min-height: 70px; }
+        .project-tech { display: flex; gap: 10px; flex-wrap: wrap; font-size: 0.8rem; color: var(--primary-accent); }
+
+        /* Contact */
+        .contact-content { text-align: center; max-width: 600px; margin: 0 auto; }
+        .social-links { margin-top: 30px; display: flex; justify-content: center; gap: 20px; }
+        .social-icon {
+            display: flex; align-items: center; justify-content: center;
+            width: 50px; height: 50px;
+            border-radius: 50%;
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            color: var(--text-main);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+        .social-icon:hover {
+            background: var(--primary-accent);
+            color: #000;
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 240, 255, 0.4);
+        }
+
+        /* Scroll Animation Classes */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .hero-title { font-size: 3rem; }
+            .about-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
+            .nav-links { display: none; } /* Could add a hamburger menu for mobile */
+            section { padding: 100px 5%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-mesh"></div>
+
+    <nav>
+        <a href="#" class="nav-logo">HN.</a>
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#skills">Skills</a>
+            <a href="#projects">Projects</a>
+            <a href="#contact">Contact</a>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="hero-content reveal active">
+            <p style="color: var(--primary-accent); font-family: 'Space Grotesk'; font-weight: 600; margin-bottom: 10px;">Hello, I'm</p>
+            <h1 class="hero-title">Hitesh Namrani</h1>
+            <div class="typewriter" id="typewriter-text"></div>
+            <p style="color: var(--text-muted); max-width: 600px; margin-bottom: 30px;">
+                Computer Science student at MSIT Delhi combining traditional software engineering principles with modern Web3 ecosystems and AI-driven development.
+            </p>
+            <div>
+                <a href="#projects" class="btn btn-primary">View My Work</a>
+                <a href="https://github.com/hitesh-namrani" target="_blank" class="btn btn-secondary">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title reveal"><span class="gradient-text">About Me.</span></h2>
+        <div class="about-grid reveal">
+            <div>
+                <p style="margin-bottom: 20px; color: var(--text-muted);">
+                    I'm currently a 2nd-year B.Tech CSE student based in Dwarka, Delhi. I specialize in building full-stack web applications, exploring decentralized architectures on the blockchain, and leveraging AI tools to accelerate development and automate complex workflows.
+                </p>
+                <p style="color: var(--text-muted);">
+                    Whether it's writing core C++/Java logic, designing responsive UI prototypes, or deploying smart contracts, I focus on building efficient, scalable, and beautifully designed solutions.
+                </p>
+            </div>
+            <div>
+                <div class="stat-card">
+                    <h3>Education</h3>
+                    <p>Maharaja Surajmal Institute of Technology (MSIT)</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">B.Tech in Computer Science & Engineering (2nd Year)</p>
+                </div>
+                <div class="stat-card">
+                    <h3>Academic Standing</h3>
+                    <p class="gradient-text" style="font-size: 1.5rem; font-weight: 700;">9.145 CGPA</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills">
+        <h2 class="section-title reveal"><span class="gradient-text">Technical Arsenal.</span></h2>
+        <div class="reveal">
+            <h3 style="margin-bottom: 15px; font-size: 1.2rem;">Core & Backend</h3>
+            <div class="skills-container">
+                <span class="skill-chip">C</span>
+                <span class="skill-chip">C++</span>
+                <span class="skill-chip">Java</span>
+                <span class="skill-chip">Python</span>
+                <span class="skill-chip">SQL</span>
+            </div>
+            
+            <h3 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem;">MERN Stack & Frontend</h3>
+            <div class="skills-container">
+                <span class="skill-chip">HTML5</span>
+                <span class="skill-chip">CSS3</span>
+                <span class="skill-chip">JavaScript</span>
+                <span class="skill-chip">React.js</span>
+                <span class="skill-chip">Node.js</span>
+                <span class="skill-chip">Express.js</span>
+            </div>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem;">Web3 & Blockchain</h3>
+            <div class="skills-container">
+                <span class="skill-chip">Solidity</span>
+                <span class="skill-chip">Ethereum</span>
+                <span class="skill-chip">Mantle Testnet</span>
+                <span class="skill-chip">Smart Contracts</span>
+            </div>
+
+            <h3 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem;">AI, Automation & Tools</h3>
+            <div class="skills-container">
+                <span class="skill-chip">Cursor</span>
+                <span class="skill-chip">Windsurf</span>
+                <span class="skill-chip">Gemini API</span>
+                <span class="skill-chip">n8n</span>
+                <span class="skill-chip">MATLAB</span>
+                <span class="skill-chip">Scilab</span>
+                <span class="skill-chip">Git/GitHub</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <h2 class="section-title reveal"><span class="gradient-text">Featured Projects.</span></h2>
+        <div class="projects-grid">
+            
+            <div class="project-card reveal track-mouse">
+                <div class="project-content">
+                    <div class="project-header">
+                        <i class="fa-solid fa-palette project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/hitesh-namrani/ENVA2026" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">ENVA2026</h3>
+                    <p class="project-desc">Official repository for the ENVA '26 website. Served as Lead Designer, providing full HTML/CSS prototyping and UI architecture for the React implementation.</p>
+                    <div class="project-tech">
+                        <span>HTML/CSS</span> <span>JavaScript</span> <span>UI/UX</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal track-mouse">
+                <div class="project-content">
+                    <div class="project-header">
+                        <i class="fa-brands fa-ethereum project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/hitesh-namrani/mantle-based-student-hub" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Mantle Student Hub</h3>
+                    <p class="project-desc">A decentralized Web3 application built as a comprehensive student portal deployed on the Mantle network.</p>
+                    <div class="project-tech">
+                        <span>Web3</span> <span>HTML/JS</span> <span>Mantle</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal track-mouse">
+                <div class="project-content">
+                    <div class="project-header">
+                        <i class="fa-solid fa-fire project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/hitesh-namrani/vibe-code-web3" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Deflationary Token</h3>
+                    <p class="project-desc">An ERC20-like smart contract featuring a 1% burn rate on every transfer to gradually reduce total supply over time.</p>
+                    <div class="project-tech">
+                        <span>Solidity</span> <span>Smart Contract</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal track-mouse">
+                <div class="project-content">
+                    <div class="project-header">
+                        <i class="fa-solid fa-robot project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/hitesh-namrani/Youtube-video-downloader-made-via-ai" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">AI-Assisted YT Downloader</h3>
+                    <p class="project-desc">A robust, web-based YouTube video downloader featuring a clean UI, a powerful FastAPI backend, and utilizing the yt-dlp library.</p>
+                    <div class="project-tech">
+                        <span>Python</span> <span>FastAPI</span> <span>yt-dlp</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal track-mouse">
+                <div class="project-content">
+                    <div class="project-header">
+                        <i class="fa-solid fa-chart-line project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/hitesh-namrani/vibe-vision-ai" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">VibeVision AI</h3>
+                    <p class="project-desc">A machine learning project built in Jupyter Notebooks to analyze and predict trends or outcomes based on specific data sets.</p>
+                    <div class="project-tech">
+                        <span>Python</span> <span>Jupyter Notebook</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card reveal track-mouse">
+                <div class="project-content">
+                    <div class="project-header">
+                        <i class="fa-solid fa-utensils project-icon"></i>
+                        <div class="project-links">
+                            <a href="https://github.com/hitesh-namrani/hackavensis-project" target="_blank"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Canteen OS</h3>
+                    <p class="project-desc">A progressive campus dining solution that successfully reached the Top 40 finalists at the Hackavensis hackathon.</p>
+                    <div class="project-tech">
+                        <span>HTML/CSS</span> <span>JavaScript</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="contact" style="min-height: 60vh;">
+        <div class="contact-content reveal">
+            <h2 class="section-title"><span class="gradient-text">Let's Connect.</span></h2>
+            <p style="color: var(--text-muted); font-size: 1.1rem; margin-bottom: 20px;">
+                Looking for a Summer 2026 internship in Software Development, Data Analytics, or Web3. My inbox is always open.
+            </p>
+            <div class="social-links">
+                <a href="mailto:hiteshnamrani10c13@gmail.com" class="social-icon" title="Email"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://github.com/hitesh-namrani" target="_blank" class="social-icon" title="GitHub"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/hitesh-namrani-5b36641b8/" class="social-icon" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <p style="margin-top: 50px; font-size: 0.9rem; color: #555;">
+                Built by Hitesh Namrani
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Typewriter Effect
+        const textArray = ["Software Development Engineer", "MERN Stack Developer", "Web3 & Blockchain Enthusiast", "AI & Vibe Coder"];
+        let textIndex = 0;
+        let charIndex = 0;
+        const typeSpeed = 50;
+        const eraseSpeed = 30;
+        const newTextDelay = 2000;
+        const typewriterElement = document.getElementById("typewriter-text");
+
+        function type() {
+            if (charIndex < textArray[textIndex].length) {
+                typewriterElement.textContent += textArray[textIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, typeSpeed);
+            } else {
+                setTimeout(erase, newTextDelay);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typewriterElement.textContent = textArray[textIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, eraseSpeed);
+            } else {
+                textIndex++;
+                if (textIndex >= textArray.length) textIndex = 0;
+                setTimeout(type, typeSpeed + 500);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(type, newTextDelay + 250);
+        });
+
+        // Scroll Reveal Animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Trigger on load
+
+        // Hover Glow Effect on Cards (Glassmorphism + Light Tracking)
+        document.querySelectorAll('.track-mouse').forEach(card => {
+            card.onmousemove = e => {
+                const rect = card.getBoundingClientRect(),
+                      x = e.clientX - rect.left,
+                      y = e.clientY - rect.top;
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            };
+        });
+    </script>
+</body>
+</html>
