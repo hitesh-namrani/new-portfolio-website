@@ -157,6 +157,54 @@
             transform: translateY(-2px);
         }
 
+        /* Experience */
+        .experience-container {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+        .experience-card {
+            background: var(--surface-color);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .experience-card:hover {
+            border-color: rgba(255,255,255,0.2);
+            transform: translateX(10px);
+        }
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .experience-role {
+            font-size: 1.4rem;
+            color: var(--primary-accent);
+        }
+        .experience-duration {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.05);
+            padding: 5px 12px;
+            border-radius: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .experience-company {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        .experience-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
         /* Projects Grid */
         .projects-grid {
             display: grid;
@@ -223,8 +271,9 @@
             .hero-title { font-size: 3rem; }
             .about-grid { grid-template-columns: 1fr; }
             nav { padding: 20px; }
-            .nav-links { display: none; } /* Could add a hamburger menu for mobile */
+            .nav-links { display: none; }
             section { padding: 100px 5%; }
+            .experience-header { flex-direction: column; align-items: flex-start; }
         }
     </style>
 </head>
@@ -237,6 +286,7 @@
         <div class="nav-links">
             <a href="#about">About</a>
             <a href="#skills">Skills</a>
+            <a href="#experience">Experience</a>
             <a href="#projects">Projects</a>
             <a href="#contact">Contact</a>
         </div>
@@ -264,7 +314,7 @@
         <div class="about-grid reveal">
             <div>
                 <p style="margin-bottom: 20px; color: var(--text-muted);">
-                    I'm currently a 2nd-year B.Tech CSE student based in Dwarka, Delhi. I specialize in building full-stack web applications, exploring decentralized architectures on the blockchain, and leveraging AI tools to accelerate development and automate complex workflows.
+                    I'm currently a 3rd-year B.Tech CSE student based in Dwarka, Delhi. I specialize in building full-stack web applications, exploring decentralized architectures on the blockchain, and leveraging AI tools to accelerate development and automate complex workflows.
                 </p>
                 <p style="color: var(--text-muted);">
                     Whether it's writing core C++/Java logic, designing responsive UI prototypes, or deploying smart contracts, I focus on building efficient, scalable, and beautifully designed solutions.
@@ -274,7 +324,7 @@
                 <div class="stat-card">
                     <h3>Education</h3>
                     <p>Maharaja Surajmal Institute of Technology (MSIT)</p>
-                    <p style="font-size: 0.9rem; color: var(--text-muted);">B.Tech in Computer Science & Engineering (2nd Year)</p>
+                    <p style="font-size: 0.9rem; color: var(--text-muted);">B.Tech in Computer Science & Engineering (3rd Year)</p>
                 </div>
                 <div class="stat-card">
                     <h3>Academic Standing</h3>
@@ -294,6 +344,8 @@
                 <span class="skill-chip">Java</span>
                 <span class="skill-chip">Python</span>
                 <span class="skill-chip">SQL</span>
+                <span class="skill-chip">Spring Boot</span>
+                <span class="skill-chip">JUnit</span>
             </div>
             
             <h3 style="margin-top: 30px; margin-bottom: 15px; font-size: 1.2rem;">MERN Stack & Frontend</h3>
@@ -324,6 +376,31 @@
                 <span class="skill-chip">Scilab</span>
                 <span class="skill-chip">Git/GitHub</span>
             </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <h2 class="section-title reveal"><span class="gradient-text">Experience.</span></h2>
+        <div class="experience-container reveal">
+            
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3 class="experience-role">Software Engineering Intern</h3>
+                    <span class="experience-duration"><i class="far fa-calendar-alt"></i> June 2026 - July 2026 (8 Weeks)</span>
+                </div>
+                <p class="experience-company">Pine Labs</p>
+                <p class="experience-desc">Engineered a wallet microservice exposing 6 RESTful APIs using Java and Spring Boot. Ensured code reliability by authoring comprehensive unit tests with JUnit 5, applied advanced DSA principles to optimize execution logic, and maintained clean code architecture utilizing Lombok to minimize boilerplate.</p>
+            </div>
+
+            <div class="experience-card">
+                <div class="experience-header">
+                    <h3 class="experience-role">Web Developer</h3>
+                    <span class="experience-duration"><i class="far fa-calendar-alt"></i> May 2026 (15 Days)</span>
+                </div>
+                <p class="experience-company">Inamigos Foundation</p>
+                <p class="experience-desc">Participated in a fast-paced 15-day short-term internship program, assisting with web development deliverables, building out UI components, and supporting organizational initiatives.</p>
+            </div>
+
         </div>
     </section>
 
